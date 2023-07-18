@@ -1,17 +1,59 @@
 <?php
 
-namespace App\Entity;
+namespace App\Document;
 
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\UniqueIndex;
+
+/**
+ * @MongoDB\Document(collection="bicycles")
+ * @UniqueIndex(keys={"email"="asc"}, options={"unique"=true})
+ */
 class Bicycle
 {
+
+    /**
+     * @MongoDB\Id
+     */
+    public $id;
+
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     private $color;
+
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     private $brand;
+
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     private $status;
+    /**
+     * @MongoDB\Field(type="string")
+     */
     private $currentSpeed;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     private $accelerateStatus;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     private $geolocation;
 
- 
+
+    // Getter and setter methods for the properties
+
+
 
     public function getCurrentSpeed(): int
     {

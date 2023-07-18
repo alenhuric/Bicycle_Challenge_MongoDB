@@ -9,6 +9,36 @@ controllers:
 bicycle:
   path: /bike
   controller: App\Controller\BicycleController::index
+  methods: GET
+
+bicycle_add:
+  path: /add-bike
+  controller: App\Controller\BicycleController::getStoreForm
+  methods: GET
+
+bicycle_update:
+  path: /edit-bike/{id}
+  controller: App\Controller\BicycleController::getUpdateForm
+  methods: [GET, POST]
+
+bicycle_update_data:
+  path: /edit-bicycle
+  controller: App\Controller\BicycleController::edit
+  methods: POST
+
+bicycle_delete:
+  path: /delete-bike/{id}
+  controller: App\Controller\BicycleController::deleteBicycle
+  methods: POST
+
+bicycle_show_data:
+  path: /show-bicycle/{id}
+  controller: App\Controller\BicycleController::showBicycle
+  methods: GET
+
+test:
+  path: /test
+  controller: App\Controller\HomeController::insert
 
 app:
   resource: ../src/Controller/

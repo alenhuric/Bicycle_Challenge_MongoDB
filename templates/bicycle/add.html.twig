@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bicycle Details{% endblock %}
+
+{% block content %}
+
+    {# <style>
+        /* Navbar styles */
+        #navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            border-bottom-left-radius: 20px;
+        }
+
+        #navbar li {
+            float: left;
+        }
+
+        #navbar li a {
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        #navbar li a:hover {
+            background-color: #4a4a4a;
+        }
+    </style> #}
+    
+    <nav>
+        <ul id="navbar">
+             <li><a href="{{ path('bicycle') }}">Bicycle</a></li>
+            <li><a href="{{ path('app_logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <h1>Bicycle Form</h1>
+    
+   {{ form_start(form) }}
+
+
+          <div style="margin-bottom: 20px;">
+                {{ form_row(form.color) }}
+            </div>
+            <div style="margin-bottom: 20px;">
+                {{ form_row(form.brand) }}
+            </div>
+
+            <div style="margin-bottom: 20px;">
+            {% if form_row(form.status) %}
+            <label for="status">Bicycle Status:</label>
+              <select id="status" name="status">
+            <option value="Running" >Running</option>
+            <option value="Stopped" >Stopped</option>
+        </select>
+        {% endif %}
+            </div>
+             <div style="margin-bottom: 20px;">
+             {% if form_row(form.currentSpeed) %}
+                      <label for="currentSpeed">Current Speed:</label>
+        <input type="number" id="currentSpeed" name="currentSpeed" >
+                  {% endif %}
+            </div>
+
+             <div style="margin-bottom: 20px;">
+                {{ form_row(form.geolocation) }}
+            </div>
+            <div style="margin-bottom: 20px;">
+             {% if form_row(form.accelerateStatus) %}
+              <label for="accelerateStatus">Accelerate Status:</label>
+                <select id="accelerateStatus" name="accelerateStatus" >
+            <option value="Accelerate" >Accelerate</option>
+            <option value="Deceleration" >Deceleration</option>
+        </select>
+                  {% endif %}
+            </div>
+
+           
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // Check the bicycle status on page load
+                checkBicycleStatus();
+
+                // Check the bicycle status when the "Bicycle Status" select element changes
+                $('#status').change(function() {
+                    checkBicycleStatus();
+                });
+
+                function checkBicycleStatus() {
+                    var bicycleStatus = $('#status').val();
+
+                    if (bicycleStatus === 'Stopped') {
+                        $('#accelerateStatus').attr('readonly', true).val('Deceleration');
+                        $('#currentSpeed').prop('readonly', true).addClass('disabled-input');
+                    } else {
+                        $('#accelerateStatus').attr('readonly', false);
+                        $('#currentSpeed').prop('readonly', false).removeClass('disabled-input');
+                    }
+                }
+
+                // Retrieve the saved theme preference from local storage
+                var themePreference = localStorage.getItem('theme');
+
+                // Set the initial theme based on the saved preference
+                if (themePreference === 'dark') {
+                    $('body').addClass('dark');
+                }
+            });
+        </script>
+
+        <button type="submit">Create</button>
+
+    
+ 
+{% endblock %}

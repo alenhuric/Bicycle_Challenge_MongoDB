@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to the Home Page{% endblock %}
+
+{% block content %}
+    <style>
+        /* Navbar styles */
+        #navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            border-bottom-left-radius: 20px;
+        }
+
+        #navbar li {
+            float: left;
+        }
+
+        #navbar li a {
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        #navbar li a:hover {
+            background-color: #4a4a4a;
+        }
+
+        /* Content styles */
+        .content {
+            margin: 50px;
+            font-size: 20px;
+            line-height: 1.6;
+            text-align: justify;
+            color: #333;
+        }
+
+        .content h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-left: 5px solid #4CAF50;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .content p:last-child {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            border-left: none;
+        }
+    </style>
+    
+    <nav>
+        <ul id="navbar">
+        
+            <li><a href="{{ path('home') }}">Home</a></li>
+
+            <li><a href="{{ path('app_logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+  <div class="content">
+  <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="/add-bike"> 
+                  <button class="btn btn-primary mb-2">  Create New Bicycle</button> 
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                    
+                        <th>Color</th>
+                        <th>Brand</th>
+                        <th>Status</th>
+                        <th>Current Speed</th>
+                         <th>Accelerate Status</th>
+                         <th>Geolocation</th>
+                        <th width="240px">Action</th>
+                    </tr>
+                       {% for bicycle in bicycles %}
+                    <tr>
+                        <td>{{ bicycle.color }}</td>
+                        <td>{{ bicycle.brand }}</td>
+                        <td>{{ bicycle.status }}</td>
+                        <td>{{ bicycle.currentSpeed }}</td>
+                        <td>{{ bicycle.accelerateStatus }}</td>
+                         <td>{{ bicycle.geolocation }}</td>
+                        <td>
+                        <form method="post" action="/delete-bike/{{ bicycle.id}}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <a
+                                    class="btn btn-primary"
+                                    href=" /show-bicycle/{{ bicycle.id}}">
+                                    
+                                   Show
+                                </a>
+                                <a
+                                    class="btn btn-success"
+                                    href=" /edit-bike/{{ bicycle.id}}">
+                                    
+                                    Edit
+                                </a>
+ 
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                 
+                    {% endfor %}
+                    </table>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+{% endblock %}

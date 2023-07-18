@@ -16,6 +16,23 @@ doctrine:
                 prefix: 'App\Entity'
                 alias: App
 
+doctrine_mongodb:
+    connections:
+        default:
+            server: 'mongodb://localhost:27017'
+            options: {}
+    default_database: '%env(resolve:MONGODB_DB)%'
+    document_managers:
+        default:
+            connection: default
+            mappings:
+                App:
+                    is_bundle: false
+                    type: annotation
+                    dir: '%kernel.project_dir%/src/Document'
+                    prefix: 'App\Document'
+                    alias: App
+
 when@test:
     doctrine:
         dbal:

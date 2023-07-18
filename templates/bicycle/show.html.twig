@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bicycle Edit{% endblock %}
+
+{% block content %}
+
+    {# <style>
+        /* Navbar styles */
+        #navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            border-bottom-left-radius: 20px;
+        }
+
+        #navbar li {
+            float: left;
+        }
+
+        #navbar li a {
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        #navbar li a:hover {
+            background-color: #4a4a4a;
+        }
+    </style> #}
+    
+    <nav>
+        <ul id="navbar">
+            <li><a href="{{ path('bicycle') }}">Bicycle</a></li>
+            <li><a href="{{ path('app_logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <h1>Bicycle Details</h1>
+    
+   
+    
+    
+    <div class="info">
+        <p><strong>Color:</strong> {{ bicycle.color }}</p>
+        <p><strong>Brand:</strong> {{ bicycle.brand }}</p>
+        <p><strong>Status:</strong> {{ bicycle.status }}</p>
+        <p><strong>Current Speed:</strong> {{ bicycle.currentSpeed }} km/h</p>
+        <p><strong>Geolocation:</strong> {{ bicycle.geolocation }}</p>
+        <p><strong>Accelerate Status:</strong> {{ bicycle.accelerateStatus }}</p>
+    </div>
+{% endblock %}

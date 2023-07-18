@@ -8,7 +8,8 @@ security:
       entity:
         class: App\Entity\User
         property: email
-
+    mongodb_provider:
+            id: App\Security\UserProvider
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -16,11 +17,12 @@ security:
     main:
       pattern: ^/
       lazy: true
-      provider: app_user_provider
+      provider: mongodb_provider
       form_login:
         login_path: app_login
         check_path: app_login
-        default_target_path: home
+        default_target_path: bicycle
+        always_use_default_target_path: true
       logout:
         path: app_logout
         target: app_login
@@ -28,3 +30,4 @@ security:
     - { path: /login , role: PUBLIC_ACCESS}
     - { path: /register , role: PUBLIC_ACCESS}
     - { path: ^/.*, role: ROLE_USER}
+    # - { path: ^/.*, role: PUBLIC_ACCESS}

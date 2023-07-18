@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block content %}
     <div id="loginForm" style="max-width: 350px; margin: 100px auto; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); transition: all 0.3s;">
         <h1 style="text-align: center; margin-top: 0; padding-top: 10px; transition: color 0.3s;">Register</h1>
 
         {{ form_start(form) }}
+          <div style="margin-bottom: 20px;">
+                {{ form_row(form.name) }}
+            </div>
             <div style="margin-bottom: 20px;">
                 {{ form_row(form.email) }}
             </div>
